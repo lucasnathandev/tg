@@ -4,3 +4,11 @@
 - Sistema de inteligência artificial para reconhecimento de imagens e rostos em Python.
 - Sistema de backend em NodeJS utilizando Express.js como framework para construção da API principal para comunicação entre UI e DB.
 - Sistema ORM Prisma para integração entre o NodeJS e o banco de dados MongoDB.
+
+### Como fazer o commit:
+- primeiro digite no seu console do seu sistema operacional(cmd, bash) o comando `git pull https://github.com/lukhasdeveloper/tg.git main --allow-unrelated-histories`
+- após isso, digite então: `git remote add origin https://github.com/lukhasdeveloper/tg.git`
+- então, digite: `git add .`
+- após isso: `git commit -m "sua mensagem aqui :tada:"`
+- `git push origin main`
+- pronto, agora é pra estar tudo atualizado no repositório. 😄🎉
