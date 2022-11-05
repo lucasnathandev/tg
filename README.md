@@ -12,3 +12,6 @@
 - após isso: `git commit -m "sua mensagem aqui :tada:"`
 - `git push origin main`
 - pronto, agora é pra estar tudo atualizado no repositório. 😄🎉
+
+### Rodando o projeto:
+- digite no prompt de comando ou bash do seu sistema operacional o comando `npm start` e navegue até o endereço localhost:3000 no seu navegador.
