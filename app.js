@@ -1,5 +1,6 @@
 import createError from "http-errors"
 import express from "express"
+import session from "express-session"
 
 import cookieParser from "cookie-parser"
 import logger from "morgan"
@@ -7,6 +8,7 @@ import cors from "cors"
 
 import indexRouter from "./routes/index.js"
 import usersRouter from "./routes/users.js"
+import criminalsRouter from "./routes/criminals.js"
 import middlewares from "./middlewares/index.js"
 
 const { isAuthenticated } = middlewares
@@ -24,6 +26,16 @@ app.use(
     origin: "127.0.0.1",
   })
 )
+app.use(
+  session({
+    secret: btoa("cmi2022"),
+    cookie: {
+      maxAge: 3600 * 1000,
+    },
+    resave: false,
+    saveUninitialized: false,
+  })
+)
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
@@ -31,6 +43,7 @@ app.use(express.static("public"))
 
 app.use("/", indexRouter)
 app.use("/user", isAuthenticated, usersRouter)
+app.use("/criminals", isAuthenticated, criminalsRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

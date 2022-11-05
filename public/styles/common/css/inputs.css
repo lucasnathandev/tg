@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+
+input {
+  font-family: "Raleway";
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2rem;
+
+  color: #8a8a8a;
+  border: solid 2px #ffa500;
+  border-radius: 2px;
+}
+
+input::placeholder {
+  text-transform: uppercase;
+}
+
+input:focus {
+  outline: none;
+}

@@ -2,12 +2,11 @@ import express from "express"
 const router = express.Router()
 
 import middlewares from "../middlewares/index.js"
-import user from "../controllers/users.js"
+import criminals from "../controllers/criminals.js"
 
-const { admin } = user
 const { isAdmin, isAuthenticated } = middlewares
 
-router.get("/", isAuthenticated, user.index)
-router.get("/admin", isAuthenticated, isAdmin, admin.index)
+router.get("/", isAuthenticated, criminals.index)
+router.post("/create", isAuthenticated, isAdmin, criminals.create)
 
 export default router

@@ -2,7 +2,7 @@ import express from "express"
 const router = express.Router()
 import controllers from "../controllers/index.js"
 
-const { login } = controllers
+const { login, admin } = controllers
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -11,6 +11,7 @@ router.get("/", function (req, res, next) {
   })
 })
 
-router.get("/login", login)
+router.post("/login", login)
+router.post("/user/create", admin.create)
 
 export default router

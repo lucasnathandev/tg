@@ -1,2 +1,12 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<form method="post" action="/login" class="form" id="login">
+  <h1 class="title">{{title}}</h1>
+  <div id="user">
+    <input id="user" name="user" type="text" placeholder="Usuário" />
+  </div>
+  <div id="password">
+    <input id="password" name="password" type="password" placeholder="Senha" />
+  </div>
+  <button class="btn" id="loginbtn" type="submit">Entrar</button>
+</form>
+<script type="module" src="/js/login.js"></script>
+<link rel="stylesheet" href="styles/login.css" />

@@ -1,0 +1,16 @@
+@import url("./common/css/style.css");
+
+body {
+  background-image: url("../images/main-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  max-height: 100vmax;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  color: #00b7ff;
+}
