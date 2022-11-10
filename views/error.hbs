@@ -1,6 +1,12 @@
-<h1>{{message}}</h1>
-<h2>{{error.status}}</h2>
-<pre>{{error.stack}}</pre>
+<style>
+  div { background-color: #d35a; border: none; border-radius: 3px; padding:
+  10px;}
+</style>
+<div>
+  <h1>{{message}}</h1>
+  <h2>{{error.status}}</h2>
+  <pre>{{error.stack}}</pre>
+</div>
 <script>
   setTimeout(() => { window.history.back() }, 3000)
 </script>

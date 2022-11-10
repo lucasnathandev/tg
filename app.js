@@ -30,9 +30,9 @@ app.use(
   session({
     secret: btoa("cmi2022"),
     cookie: {
-      maxAge: 3600 * 1000,
+      maxAge: 24 * 3600 * 1000,
     },
-    resave: false,
+    resave: true,
     saveUninitialized: false,
   })
 )

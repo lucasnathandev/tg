@@ -11,7 +11,7 @@ export default {
     )
   },
   isAdmin(req, res, next) {
-    if (req.session.login.role == "Admin") {
+    if (req.session.login.type == "Admin") {
       return next()
     }
     return res

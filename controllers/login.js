@@ -4,27 +4,31 @@ const prisma = new PrismaClient()
 
 export default async (req, res) => {
   try {
-    const { user: username, password } = req.body
-    const user = await prisma.agent.findFirst({
+    const { user, password } = req.body
+    const foundUser = await prisma.agent.findFirst({
       where: {
-        user: username,
+        user,
       },
     })
 
-    if (user) {
-      const rightPassword = await bcrypt.compare(password, user.password)
+    const rightPassword = await bcrypt.compare(password, foundUser.password)
 
-      if (rightPassword) {
-        req.session.login = {
-          id: user.id,
-          role: user.role,
-        }
-        return req.session.login.role === "Admin"
-          ? res.redirect("/user/admin")
-          : res.redirect("/user")
+    if (rightPassword) {
+      req.session.login = {
+        id: foundUser.id,
+        type: foundUser.type,
       }
-      return res.render("error", { error })
+      return req.session.login.type === "Admin"
+        ? res.redirect("/user/admin")
+        : res.redirect("/user")
     }
+    res.render("error", {
+      message: "Credenciais inválidas",
+      error: {
+        status: 401,
+        stack: "Não pode acessar o sistema.",
+      },
+    })
   } catch (error) {
     return res.render("error", {
       error,

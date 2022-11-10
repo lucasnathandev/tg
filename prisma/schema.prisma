@@ -16,15 +16,16 @@ model Camera {
   location        Location @relation(fields: [locationId], references: [id])
   locationId      String   @db.ObjectId
   detectedSuspect Suspect  @relation(fields: [suspectId], references: [id])
-  suspectId       String   @db.ObjectId
+  suspectId       String   @unique @db.ObjectId
 }
 
 model Capture {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   suspect    Suspect  @relation(fields: [suspectId], references: [id])
-  suspectId  String   @db.ObjectId
+  suspectId  String   @unique @db.ObjectId
   picture    String
   location   Location @relation(fields: [locationId], references: [id])
+  capturedAt DateTime @default(now())
   locationId String   @db.ObjectId
 }
 
@@ -34,31 +35,53 @@ model Location {
   city     String
   district String
   street   String
-  Capture  Capture[]
-  Camera   Camera[]
+  capture  Capture[]
+  camera   Camera[]
 }
 
 model Suspect {
-  id      String    @id @default(auto()) @map("_id") @db.ObjectId
-  name    String
-  age     Int
-  rg      String    @unique
-  cpf     String    @unique
-  picture String
-  reason  String
-  level   Int
-  status  Status    @default(Preso)
-  Capture Capture[]
-  Camera  Camera[]
+  id                 String    @id @default(auto()) @map("_id") @db.ObjectId
+  name               String
+  cpf                String    @unique
+  criminalMotivation String
+  picture            String
+  reason             String
+  levelWanted        Int
+  description        String
+  status             Status    @default(Preso)
+  capture            Capture?
+  camera             Camera?
+  isActivated        Boolean   @default(true)
+  createdDate        DateTime  @default(now())
+  updatedDate        DateTime  @updatedAt
+  deactivatedDate    DateTime?
 }
 
 model Agent {
-  id         String @id @default(auto()) @map("_id") @db.ObjectId
-  name       String
-  role       Role   @default(User)
-  user       String @unique
-  password   String
-  militaryId String @unique
+  id                String    @id @default(auto()) @map("_id") @db.ObjectId
+  name              String
+  rg                String    @unique
+  cpf               String    @unique
+  user              String    @unique
+  cellNumber        String
+  birthDate         DateTime
+  publicPlace       String
+  number            Int
+  district          String
+  complement        String?
+  zipCode           String
+  city              String
+  state             String
+  commander         String
+  militaryRank      String
+  divisionAddress   String
+  officeDescription String
+  password          String
+  type              Role      @default(User)
+  isActivated       Boolean   @default(true)
+  creationDate      DateTime  @default(now())
+  updateDate        DateTime  @updatedAt
+  deactivatedDate   DateTime?
 }
 
 enum Status {
