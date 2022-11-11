@@ -1,0 +1,22 @@
+div.grid {
+  display: grid;
+  grid-template-columns: 70% 1fr;
+  grid-template-rows: 1fr;
+}
+
+ul {
+  display: flex;
+  position: relative;
+  height: 100%;
+
+  align-items: center;
+  flex-flow: row wrap;
+}
+
+li.extra {
+  background-color: var(--bg-primary);
+}
+
+li.extra > a {
+  text-transform: uppercase;
+}

@@ -1,1 +1,19 @@
-<h1>Agente</h1>
+<div class="grid">
+  <div class="camera">
+    <video autoplay src="https://www.youtube.com/watch?v=qpOZup_3P_A"></video>
+  </div>
+  <aside>
+    <ul>
+      <li class="link"><a href="/camera">Visualizar Suspeito</a></li>
+      {{#if admin}}
+        <li class="link"><a href="/admin/suspect/create">Cadastrar Suspeito</a></li>
+      {{/if}}
+      <li class="link"><a href="/suspect/list">Lista de Suspeitos</a></li>
+      <li class="link extra"><a
+          href="mailto:ssp@sp.gov.br?subject=Bug na Central de Monitoramento Inteligente"
+        >Reportar Bug</a></li>
+      <li class="link extra"><a href="/logout">Sair</a></li>
+    </ul>
+  </aside>
+</div>
+<link rel="stylesheet" href="styles/user.css" />

@@ -1,0 +1,18 @@
+li.link {
+  padding: 10px 20px;
+  background-color: transparent;
+  border: solid 1px var(--bg-primary);
+  border-radius: 10px;
+  margin: 4px;
+  text-align: center;
+}
+
+a {
+  font-size: 1.5rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+a:focus {
+  outline: none;
+}

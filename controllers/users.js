@@ -4,6 +4,9 @@ const prisma = new PrismaClient()
 
 export default {
   index(req, res) {
+    const admin = req.session.login.type === "Admin"
+    return res.render("agent/index", { admin })
+
     res.render("agent/index")
   },
   admin: {

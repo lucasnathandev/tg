@@ -14,8 +14,6 @@ export default {
     if (req.session.login.type == "Admin") {
       return next()
     }
-    return res
-      .status(403)
-      .send("Você não tem autorização para acessar essa página!")
+    return res.status(403).redirect(req.baseUrl)
   },
 }

@@ -5,7 +5,7 @@ import controllers from "../controllers/index.js"
 const { login, logout } = controllers
 
 /* GET home page. */
-router.get("/", function (req, res, next) {
+router.get("/", logout, function (req, res, next) {
   res.render("index", {
     title: "Central de Monitoramento Inteligente",
   })

@@ -1,6 +1,13 @@
 @import url("./common/css/style.css");
 
+:root {
+  --bg-primary: #d2691e;
+}
+
 body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
   background-image: url("../images/main-bg.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -11,6 +18,15 @@ body {
   align-items: center;
 }
 
-a {
-  color: #00b7ff;
+ul {
+  padding: 0;
+}
+
+li.link {
+  width: 100%;
+}
+
+aside {
+  height: 100%;
+  border-left: 1px solid var(--bg-primary);
 }

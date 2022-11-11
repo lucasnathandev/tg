@@ -1,3 +1,10 @@
 div {
   margin: 5px 10px;
 }
+
+div.grid {
+  width: 85%;
+  height: 85%;
+  border: 1px solid var(--bg-primary);
+  border-radius: 10px;
+}
