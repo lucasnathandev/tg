@@ -6,15 +6,13 @@ export default {
   index(req, res) {
     const admin = req.session.login.type === "Admin"
     return res.render("agent/index", { admin })
-
-    res.render("agent/index")
   },
   admin: {
-    index(req, res) {
-      res.render("admin/index")
-    },
-    create: {
-      async user(req, res) {
+    createUser: {
+      index(req, res) {
+        res.render("admin/createUser")
+      },
+      async create(req, res) {
         try {
           const {
             name,
@@ -100,64 +98,19 @@ export default {
 
           return res.status(201).render("success", {
             success: "Agente criado com sucesso!",
-            goTo: "/admin",
+            goTo: "/user",
           })
         } catch (error) {
           res.status(403).send(error.message)
         }
       },
-      async suspect(req, res) {
-        try {
-          const {
-            name,
-            cpf,
-            criminalMotivation,
-            picture,
-            reason,
-            levelWanted,
-            description,
-            status,
-          } = req.body
-
-          const suspect = await prisma.suspect.findFirst({
-            where: {
-              cpf,
-            },
-          })
-
-          if (suspect) {
-            return res.render("error", {
-              error: {
-                message: "Suspeito já existe no sistema.",
-              },
-            })
-          }
-
-          const created = await prisma.suspect.create({
-            data: {
-              name,
-              cpf,
-              criminalMotivation,
-              picture,
-              reason,
-              levelWanted,
-              description,
-              status,
-            },
-          })
-
-          created &&
-            res.render("success", {
-              success: "Suspeito cadastrado no sistema com sucesso!",
-              goTo: "/admin",
-            })
-        } catch (error) {
-          return res.render("error")
-        }
-      },
     },
-    update: {
-      async user(req, res) {
+
+    updateUser: {
+      index(req, res) {
+        res.render("admin/updateUser")
+      },
+      async update(req, res) {
         try {
           const { id } = req.params
           const {
@@ -211,27 +164,120 @@ export default {
               type,
             },
           })
-
-          res.render("success", {
-            success: "Agente atualizado com sucesso!",
-            goTo: "/admin",
+          if (updated) {
+            return res.render("success", {
+              success: "Agente atualizado com sucesso!",
+              goTo: "/admin",
+            })
+          }
+          res.render("error", {
+            error: {
+              message:
+                "Inconsistência nos dados, por favor verifique os campos.",
+            },
           })
         } catch (error) {
           res.render("error")
         }
       },
-      async suspect(req, res) {
-        const { id } = req.params
-        const {
-          name,
-          cpf,
-          criminalMotivation,
-          picture,
-          reason,
-          levelWanted,
-          description,
-          status,
-        } = req.body
+    },
+    createSuspect: {
+      index(req, res) {
+        res.render("admin/createSuspect")
+      },
+      async create(req, res) {
+        try {
+          const {
+            name,
+            cpf,
+            criminalMotivation,
+            picture,
+            reason,
+            levelWanted,
+            description,
+            status,
+          } = req.body
+
+          const suspect = await prisma.suspect.findFirst({
+            where: {
+              cpf,
+            },
+          })
+
+          if (suspect) {
+            return res.render("error", {
+              error: {
+                message: "Suspeito já existe no sistema.",
+              },
+            })
+          }
+
+          const created = await prisma.suspect.create({
+            data: {
+              name,
+              cpf,
+              criminalMotivation,
+              picture,
+              reason,
+              levelWanted,
+              description,
+              status,
+            },
+          })
+
+          created &&
+            res.render("success", {
+              success: "Suspeito cadastrado no sistema com sucesso!",
+              goTo: "/admin",
+            })
+        } catch (error) {
+          return res.render("error")
+        }
+      },
+    },
+    updateSuspect: {
+      index(req, res) {
+        res.render("admin/createSuspect")
+      },
+      async update(req, res) {
+        try {
+          const { id } = req.params
+          const {
+            name,
+            cpf,
+            criminalMotivation,
+            picture,
+            reason,
+            levelWanted,
+            description,
+            status,
+          } = req.body
+
+          const updated = await prisma.suspect.update({
+            where: {
+              id,
+            },
+            data: {
+              name,
+              cpf,
+              criminalMotivation,
+              picture,
+              reason,
+              levelWanted,
+              description,
+              status,
+            },
+          })
+
+          if (updated) {
+            return res.render("success", {
+              success: "Suspeito atualizado com sucesso!",
+              goTo: "/user",
+            })
+          }
+        } catch (error) {
+          return res.render("error")
+        }
       },
     },
   },

@@ -1,14 +1,36 @@
 <div class="grid">
   <div class="camera">
-    <video autoplay src="https://www.youtube.com/watch?v=qpOZup_3P_A"></video>
+    <iframe
+      width="100%"
+      height="100%"
+      src="https://www.youtube.com/embed/glmXPs0hLmw?controls=0"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+    {{#if admin}}
+      <div id="alerts">
+        <a class="btn" href="/admin/alerts">Verificar Alertas</a>
+      </div>
+    {{/if}}
   </div>
   <aside>
     <ul>
       <li class="link"><a href="/camera">Visualizar Suspeito</a></li>
       {{#if admin}}
-        <li class="link"><a href="/admin/suspect/create">Cadastrar Suspeito</a></li>
+        <li class="link"><a
+            href="/user/admin/create/suspect"
+            target="_blank"
+          >Cadastrar Suspeito</a></li>
+        <li class="link"><a
+            href="/user/admin/create/user"
+            target="_blank"
+          >Cadastrar Agente</a></li>
+        <li class="link"><a href="/user/admin/user/list" target="_blank">Lista
+            de Agentes</a></li>
       {{/if}}
-      <li class="link"><a href="/suspect/list">Lista de Suspeitos</a></li>
+      <li class="link"><a href="/suspect" target="_blank">Lista de Suspeitos</a></li>
       <li class="link extra"><a
           href="mailto:ssp@sp.gov.br?subject=Bug na Central de Monitoramento Inteligente"
         >Reportar Bug</a></li>
@@ -16,4 +38,4 @@
     </ul>
   </aside>
 </div>
-<link rel="stylesheet" href="styles/user.css" />
+<link rel="stylesheet" href="/styles/user.css" />

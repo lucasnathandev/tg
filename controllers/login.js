@@ -18,9 +18,7 @@ export default async (req, res) => {
         id: foundUser.id,
         type: foundUser.type,
       }
-      return req.session.login.type === "Admin"
-        ? res.redirect("/user/admin")
-        : res.redirect("/user")
+      return res.redirect("/user")
     }
     res.render("error", {
       message: "Credenciais inválidas",
