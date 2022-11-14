@@ -43,7 +43,6 @@ app.use(express.static("public"))
 
 app.use("/", indexRouter)
 app.use("/user", isAuthenticated, usersRouter)
-app.use("/suspect", isAuthenticated, criminalsRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -4,6 +4,7 @@
 @import url("buttons.css");
 @import url("forms.css");
 @import url("divs.css");
+@import url("section.css");
 
 li {
   list-style-type: none;

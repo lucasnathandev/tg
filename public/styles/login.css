@@ -6,7 +6,7 @@ form#login {
   justify-content: space-evenly;
   width: 60%;
   background: rgba(255, 255, 255, 0.5);
-  border: 2px solid #d2691e;
+  border: 2px solid var(--bg-primary);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
 }
@@ -14,10 +14,4 @@ form#login {
 form#login > div > input {
   border-radius: 10px;
   height: 40px;
-}
-
-.title {
-  font-size: 1.7rem;
-  color: var(--bg-primary);
-  text-align: center;
 }

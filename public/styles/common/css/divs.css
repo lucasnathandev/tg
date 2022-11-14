@@ -3,8 +3,20 @@ div {
 }
 
 div.grid {
+  margin-top: 50px;
   width: 85%;
   height: 85%;
   border: 1px solid var(--bg-primary);
   border-radius: 10px;
+}
+
+div.input {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+div.input > label {
+  align-self: start;
 }

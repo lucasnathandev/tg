@@ -45,7 +45,6 @@ model Suspect {
   cpf                String    @unique
   criminalMotivation String
   picture            String
-  reason             String
   levelWanted        Int
   description        String
   status             Status    @default(Preso)

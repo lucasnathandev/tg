@@ -1,0 +1,41 @@
+<div class="grid">
+  <h1 class="title">{{title}}</h1>
+  <form action="/user/admin/create/suspect/complete" id="create-suspect">
+    <section id="personalData">
+      <div class="input w-100">
+        <label for="" id="name">Nome</label>
+        <input class="w-100" type="text" id="name" name="name" required />
+      </div>
+      <div class="input">
+        <label for="" id="cpf">CPF</label>
+        <input type="text" id="cpf" name="cpf" maxlength="12" required />
+      </div>
+      <div class="input">
+        <label for="" id="reason">Motivo</label>
+        <input type="text" id="reason" name="criminalMotivation" required />
+      </div>
+      <div class="input">
+        <label for="" id="reason">Nível</label>
+        <input type="text" id="levelWanted" name="levelWanted" required />
+      </div>
+      <div class="input w-100">
+        <label for="" id="reason">Descrição</label>
+        <textarea class="w-100" name="" id="" rows="20" required></textarea>
+      </div>
+      <div class="input w-100">
+        <label for="">Foto</label>
+        <input
+          class="w-100"
+          type="text"
+          name="picture"
+          id="picture"
+          placeholder="URL completa da foto."
+          required
+        />
+      </div>
+    </section>
+    <button class="btn" type="submit">Cadastrar</button>
+  </form>
+</div>
+<script src="js/script.js"></script>
+<link rel="stylesheet" href="/styles/creation.css" />

@@ -1,15 +1,109 @@
-<form action="" id="create-user">
-  <label for="" id="name">Nome</label>
-  <input type="text" id="name" name="name" />
-  <label for="" id="cpf">CPF</label>
-  <input type="text" id="cpf" name="cpf" />
-  <label for="" id="rg">RG</label>
-  <input type="text" id="rg" name="rg" />
-  <section id="address">
-    <label for="" id="zipcode">CEP</label>
-    <input type="text" id="zipcode" name="zipCode" placeholder="12345-678" />
-    <label for="" id="publicPlace">Rua</label>
-    <input type="text" id="publicPlace" />
-  </section>
-</form>
-<script src="js/script.js"></script>
+<div class="grid">
+  <h1 class="title">{{title}}</h1>
+  <form action="/user/admin/create/user/complete" id="create-user">
+    <section id="personalData">
+      <div class="input w-100">
+        <label for="" id="name">Nome</label>
+        <input class="w-100" type="text" id="name" name="name" required />
+      </div>
+      <div class="input">
+        <label for="" id="cpf">CPF</label>
+        <input type="text" id="cpf" name="cpf" maxlength="12" required />
+      </div>
+      <div class="input">
+        <label for="" id="rg">RG</label>
+        <input type="text" id="rg" name="rg" maxlength="10" required />
+      </div>
+      <div class="input">
+        <label for="" id="rg">Data de Nascimento</label>
+        <input type="date" name="" id="" maxlength="10" />
+      </div>
+      <div class="input">
+        <label for="" id="rg">Contato</label>
+        <input
+          type="text"
+          id="cellPhone"
+          name="cellNumber"
+          minlength="10"
+          maxlength="10"
+        />
+      </div>
+    </section>
+    <section id="address">
+      <div class="input">
+        <label for="zipcode" id="zipcode">CEP</label>
+        <input
+          maxlength="9"
+          type="text"
+          id="zipcode"
+          name="zipCode"
+          placeholder="12345-678"
+          required
+        />
+      </div>
+      <div class="input w-100">
+        <label for="publicPlace" id="">Endereço</label>
+        <input
+          class="w-100"
+          type="text"
+          id="publicPlace"
+          name="publicPlace"
+          required
+        />
+      </div>
+      <div class="input">
+        <label for="district">Número</label>
+        <input type="text" id="number" name="number" required />
+      </div>
+      <div class="input">
+        <label for="district" id="">Bairro</label>
+        <input type="text" id="district" name="district" required />
+      </div>
+      <div class="input">
+        <label for="city" id="">Cidade</label>
+        <input type="text" id="city" name="city" required />
+      </div>
+      <div class="input">
+        <label for="state" id="">Estado</label>
+        <input type="text" id="state" name="state" required />
+      </div>
+      <div class="input">
+        <label for="complement" id="">Complemento</label>
+        <input type="text" id="complement" />
+      </div>
+    </section>
+    <section id="militaryData">
+      <div class="input">
+        <label for="militaryRank" id="">Patente</label>
+        <input type="text" id="militaryRank" name="militaryRank" required />
+      </div>
+      <div class="input">
+        <label for="commander" id="">Comandante</label>
+        <input type="text" id="commander" name="commander" required />
+      </div>
+      <div class="input w-100">
+        <label for="divisionAddress" id="">Endereço da divisão pertencente</label>
+        <input
+          class="w-100"
+          type="text"
+          id="divisionAddress"
+          name="divisionAddress"
+          required
+        />
+      </div>
+      <div class="input w-100">
+        <label for="" id="">Descrição de Cargo</label>
+        <input
+          class="w-100"
+          type="text"
+          id="officeDescription"
+          name="officeDescription"
+          required
+        />
+      </div>
+    </section>
+    <button class="btn" type="submit">Cadastrar</button>
+  </form>
+</div>
+<script src="/js/script.js"></script>
+<link rel="stylesheet" href="/styles/creation.css" />

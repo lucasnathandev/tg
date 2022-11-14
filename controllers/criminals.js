@@ -3,22 +3,30 @@ const prisma = new PrismaClient()
 
 export default {
   async index(req, res) {
-    const criminals = await prisma.suspect.findMany({
-      select: {
-        name: true,
-        cpf: true,
-        criminalMotivation: true,
-        reason: true,
-        levelWanted: true,
-        status: true,
-        description: true,
-      },
-    })
+    try {
+      const suspects = await prisma.suspect.findMany({
+        where: {
+          isActivated: true,
+        },
+        orderBy: {
+          name: "asc",
+        },
+        select: {
+          id: true,
+          name: true,
+          cpf: true,
+          criminalMotivation: true,
+          picture: true,
+          reason: true,
+          levelWanted: true,
+          description: true,
+          status: true,
+        },
+      })
 
-    res.render("criminals/index", {
-      criminals: criminals.length
-        ? criminals
-        : "Não existem suspeitos cadastrados no sistema.",
-    })
+      return res.render("criminals/index", suspects)
+    } catch (error) {
+      res.render("error")
+    }
   },
 }

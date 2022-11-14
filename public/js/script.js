@@ -3,26 +3,59 @@ function setAddressValues(data) {
   const districtInput = document.querySelector("input#district")
   const cityInput = document.querySelector("input#city")
   const stateInput = document.querySelector("input#state")
-
   publicPlaceInput.value = data.address
   districtInput.value = data.district
   cityInput.value = data.city
   stateInput.value = data.state
 }
 
-function cepGuard(e) {
-  if (!e.key.match(/\d/)) {
-    if (e.target.value.length === 6) {
-      return e.key === "-"
-        ? (e.target.value = e.key)
-        : e.target.value.slice(e.target.value.length)
-    }
-    const index = e.target.value.indexOf(e.key)
-    return e.target.value.slice(index - 1, index)
-  }
+// Inputs guard
+
+function formatName(e) {
+  let v = e.target.value.replace(/\d/g, "")
+  e.target.value = v
 }
 
-async function getCep(cep) {
+function formatCep(e) {
+  let v = e.target.value.replace(/\D/g, "")
+
+  v = v.replace(/^(\d{5})(\d)/, "$1-$2")
+
+  e.target.value = v
+}
+
+function formatCellPhone(e) {
+  let v = e.target.value.replace(/\D/g, "")
+
+  v = v.replace(/^(\d\d)(\d)/g, "($1)$2")
+
+  v = v.replace(/(\d{5})(\d)/, "$1-$2")
+
+  e.target.value = v
+}
+
+function formatCpf(e) {
+  let v = e.target.value.replace(/\D/g, "")
+
+  v = v.replace(/(\d{3})(\d)/, "$1.$2")
+
+  v = v.replace(/(\d{3})(\d)/, "$1.$2")
+
+  v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
+
+  e.target.value = v
+}
+
+function formatRg(e) {
+  let v = e.target.value.replace(/\W/g, "")
+  v = v.replace(/(\d{2})(\d{3})(\d{3})(\w{1})$/, "$1.$2.$3-$4")
+  e.target.value = v
+}
+
+// Async operations
+
+async function getCep(e) {
+  const cep = e.target.value
   let formattedCep = cep.match(/\d/g).join("")
   formattedCep = formattedCep
     .substring(0, formattedCep.length - 3)
@@ -35,5 +68,15 @@ async function getCep(cep) {
   setAddressValues(data)
 }
 
+const nameInput = document.querySelector("input#name")
+const cpfInput = document.querySelector("input#cpf")
+const rgInput = document.querySelector("input#rg")
 const cepInput = document.querySelector("input#zipCode")
-cepInput.onkeyup = cepGuard
+const cellInput = document.querySelector("input#cellPhone")
+
+cepInput.onkeyup = formatCep
+cepInput.onchange = getCep
+nameInput.onkeyup = formatName
+rgInput.onkeyup = formatRg
+cpfInput.onkeyup = formatCpf
+cellInput.onkeyup = formatCellPhone

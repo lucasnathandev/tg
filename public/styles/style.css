@@ -8,11 +8,13 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background-image: url("../images/main-bg.png");
-  background-repeat: no-repeat;
+  background: radial-gradient(circle at center, #aaa 0, #555, #111 100%);
+  background-repeat: round;
+
+  /* background-image: url("../images/main-bg.png"); 
+  */
   background-size: cover;
-  height: 100vh;
-  max-height: 100vmax;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,4 +31,11 @@ li.link {
 aside {
   height: 100%;
   border-left: 1px solid var(--bg-primary);
+}
+
+h1.title {
+  text-transform: uppercase;
+  font-size: 1.7rem;
+  color: var(--bg-primary);
+  text-align: center;
 }

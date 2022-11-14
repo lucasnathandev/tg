@@ -1,0 +1,24 @@
+div.grid {
+  /* margin-top: 20%; */
+  height: auto;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+form[id*="create"] {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+}
+
+input#name {
+  text-transform: capitalize;
+}
+
+button[type="submit"].btn {
+  align-self: center;
+  width: max-content;
+  margin-bottom: 10px;
+}
