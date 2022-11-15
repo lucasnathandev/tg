@@ -8,11 +8,10 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background: radial-gradient(circle at center, #aaa 0, #555, #111 100%);
+  /* background: radial-gradient(circle at center, #aaa 0, #555, #111 100%); */
   background-repeat: round;
 
-  /* background-image: url("../images/main-bg.png"); 
-  */
+  background-image: url("../images/bg.gif");
   background-size: cover;
   min-height: 100vh;
   display: flex;

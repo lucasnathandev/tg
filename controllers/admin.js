@@ -79,6 +79,7 @@ export default {
           .replace(/\//g, "")
 
         const birth = new Date(birthDate)
+
         const user = name.split(" ")[0].concat(stringDate).toLowerCase()
 
         const userAlreadyExists = await prisma.agent.findFirst({
@@ -125,7 +126,7 @@ export default {
             commander,
             divisionAddress,
             officeDescription,
-            type: type || "User",
+            type,
           },
         })
 
@@ -202,7 +203,7 @@ export default {
         if (updated) {
           return res.render("success", {
             success: "Agente atualizado com sucesso!",
-            goTo: "/admin",
+            goTo: "/user",
           })
         }
         res.render("error", {
@@ -226,17 +227,20 @@ export default {
           cpf,
           criminalMotivation,
           picture,
-          reason,
           levelWanted,
           description,
           status,
         } = req.body
+
+        console.log(req.body)
 
         const suspect = await prisma.suspect.findFirst({
           where: {
             cpf,
           },
         })
+
+        console.log(suspect)
 
         if (suspect) {
           return res.render("error", {
@@ -252,17 +256,17 @@ export default {
             cpf,
             criminalMotivation,
             picture,
-            reason,
-            levelWanted,
+            levelWanted: parseInt(levelWanted),
             description,
             status,
           },
         })
+        console.log(created)
 
         created &&
           res.render("success", {
             success: "Suspeito cadastrado no sistema com sucesso!",
-            goTo: "/admin",
+            goTo: "/user",
           })
       } catch (error) {
         return res.render("error")

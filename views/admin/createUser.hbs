@@ -1,6 +1,10 @@
 <div class="grid">
   <h1 class="title">{{title}}</h1>
-  <form action="/user/admin/create/user/complete" id="create-user">
+  <form
+    action="/user/admin/create/user/complete"
+    method="post"
+    id="create-user"
+  >
     <section id="personalData">
       <div class="input w-100">
         <label for="" id="name">Nome</label>
@@ -8,15 +12,29 @@
       </div>
       <div class="input">
         <label for="" id="cpf">CPF</label>
-        <input type="text" id="cpf" name="cpf" maxlength="12" required />
+        <input
+          type="text"
+          id="cpf"
+          name="cpf"
+          minlength="11"
+          maxlength="14"
+          required
+        />
       </div>
       <div class="input">
         <label for="" id="rg">RG</label>
-        <input type="text" id="rg" name="rg" maxlength="10" required />
+        <input
+          type="text"
+          id="rg"
+          name="rg"
+          minlength="10"
+          maxlength="12"
+          required
+        />
       </div>
       <div class="input">
         <label for="" id="rg">Data de Nascimento</label>
-        <input type="date" name="" id="" maxlength="10" />
+        <input type="date" name="birthDate" id="" maxlength="10" />
       </div>
       <div class="input">
         <label for="" id="rg">Contato</label>
@@ -25,7 +43,7 @@
           id="cellPhone"
           name="cellNumber"
           minlength="10"
-          maxlength="10"
+          maxlength="14"
         />
       </div>
     </section>
@@ -33,6 +51,7 @@
       <div class="input">
         <label for="zipcode" id="zipcode">CEP</label>
         <input
+          minlength="8"
           maxlength="9"
           type="text"
           id="zipcode"
@@ -100,6 +119,17 @@
           name="officeDescription"
           required
         />
+      </div>
+      <div class="input">
+        <label for="">Tipo</label>
+        <select name="type" id="userType">
+          <option selected value="User">Usuário</option>
+          <option value="Admin">Administrador</option>
+        </select>
+      </div>
+      <div class="input">
+        <label for="password">Senha</label>
+        <input type="password" id="password" name="password" minlength="6" />
       </div>
     </section>
     <button class="btn" type="submit">Cadastrar</button>

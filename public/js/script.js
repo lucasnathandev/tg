@@ -22,6 +22,7 @@ function formatCep(e) {
   v = v.replace(/^(\d{5})(\d)/, "$1-$2")
 
   e.target.value = v
+  return v
 }
 
 function formatCellPhone(e) {
@@ -35,6 +36,7 @@ function formatCellPhone(e) {
 }
 
 function formatCpf(e) {
+  console.log(e.key)
   let v = e.target.value.replace(/\D/g, "")
 
   v = v.replace(/(\d{3})(\d)/, "$1.$2")
@@ -55,11 +57,7 @@ function formatRg(e) {
 // Async operations
 
 async function getCep(e) {
-  const cep = e.target.value
-  let formattedCep = cep.match(/\d/g).join("")
-  formattedCep = formattedCep
-    .substring(0, formattedCep.length - 3)
-    .concat("-", formattedCep.substring(formattedCep.length - 3))
+  const formattedCep = formatCep(e)
 
   const data = await fetch(
     `https://cdn.apicep.com/file/apicep/${formattedCep}.json`
@@ -74,9 +72,9 @@ const rgInput = document.querySelector("input#rg")
 const cepInput = document.querySelector("input#zipCode")
 const cellInput = document.querySelector("input#cellPhone")
 
-cepInput.onkeyup = formatCep
-cepInput.onchange = getCep
+cepInput && (cepInput.onkeyup = formatCep)
+cepInput && (cepInput.onchange = getCep)
 nameInput.onkeyup = formatName
-rgInput.onkeyup = formatRg
+rgInput && (rgInput.onkeyup = formatRg)
 cpfInput.onkeyup = formatCpf
-cellInput.onkeyup = formatCellPhone
+cellInput && (cellInput.onkeyup = formatCellPhone)

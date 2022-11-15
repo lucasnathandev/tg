@@ -1,6 +1,10 @@
 <div class="grid">
   <h1 class="title">{{title}}</h1>
-  <form action="/user/admin/create/suspect/complete" id="create-suspect">
+  <form
+    action="/user/admin/create/suspect/complete"
+    method="post"
+    id="create-suspect"
+  >
     <section id="personalData">
       <div class="input w-100">
         <label for="" id="name">Nome</label>
@@ -8,7 +12,14 @@
       </div>
       <div class="input">
         <label for="" id="cpf">CPF</label>
-        <input type="text" id="cpf" name="cpf" maxlength="12" required />
+        <input
+          type="text"
+          id="cpf"
+          name="cpf"
+          minlength="11"
+          maxlength="14"
+          required
+        />
       </div>
       <div class="input">
         <label for="" id="reason">Motivo</label>
@@ -18,9 +29,22 @@
         <label for="" id="reason">Nível</label>
         <input type="text" id="levelWanted" name="levelWanted" required />
       </div>
+      <div class="input">
+        <label for="" id="reason">Status</label>
+        <select name="status" id="">
+          <option selected value="Preso">Preso</option>
+          <option value="Foragido">Foragido</option>
+        </select>
+      </div>
       <div class="input w-100">
         <label for="" id="reason">Descrição</label>
-        <textarea class="w-100" name="" id="" rows="20" required></textarea>
+        <textarea
+          class="w-100"
+          name="description"
+          id=""
+          rows="20"
+          required
+        ></textarea>
       </div>
       <div class="input w-100">
         <label for="">Foto</label>
@@ -37,5 +61,5 @@
     <button class="btn" type="submit">Cadastrar</button>
   </form>
 </div>
-<script src="js/script.js"></script>
+<script src="/js/script.js" defer></script>
 <link rel="stylesheet" href="/styles/creation.css" />

@@ -32,7 +32,7 @@ app.use(
     cookie: {
       maxAge: 24 * 3600 * 1000,
     },
-    resave: true,
+    resave: false,
     saveUninitialized: false,
   })
 )
