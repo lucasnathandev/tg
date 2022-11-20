@@ -17,14 +17,16 @@ export default {
           cpf: true,
           criminalMotivation: true,
           picture: true,
-          reason: true,
           levelWanted: true,
           description: true,
           status: true,
         },
       })
 
-      return res.render("criminals/index", suspects)
+      return res.render("criminals/index", {
+        suspects,
+        title: "Lista de Suspeitos",
+      })
     } catch (error) {
       res.render("error")
     }

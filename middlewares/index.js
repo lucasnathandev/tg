@@ -14,6 +14,8 @@ export default {
     if (req.session.login.type == "Admin") {
       return next()
     }
-    return res.status(403).redirect(req.baseUrl)
+    return res
+      .status(403)
+      .send(`<script>setTimeout(() => window.history.back())</script>`)
   },
 }

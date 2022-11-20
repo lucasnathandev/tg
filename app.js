@@ -8,7 +8,6 @@ import cors from "cors"
 
 import indexRouter from "./routes/index.js"
 import usersRouter from "./routes/users.js"
-import criminalsRouter from "./routes/criminals.js"
 import middlewares from "./middlewares/index.js"
 
 const { isAuthenticated } = middlewares

@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt"
 import { PrismaClient } from "@prisma/client"
 import admin from "./admin.js"
-import suspect from "./criminals.js"
+import suspect from "./suspect.js"
 const prisma = new PrismaClient()
 
 export default {

@@ -12,24 +12,32 @@
     </div>
   </nav>
   <div class="table-container">
-    <table class="table">
+    <table class="table user-list">
       <thead>
         <tr>
+
+          <th>RG</th>
           <th>CPF</th>
           <th>Nome</th>
-          <th>Motivo</th>
-          <th>Nível</th>
-          <th>Status</th>
+          <th>CEP</th>
+          <th>Patente</th>
+          <th>Comandante</th>
+          <th>End. Divisão</th>
+          <th>Descrição Cargo</th>
         </tr>
       </thead>
       <tbody>
-        {{#each suspects}}
+        {{#each users}}
           <tr>
+
+            <td>{{rg}}</td>
             <td>{{cpf}}</td>
             <td>{{name}}</td>
-            <td>{{criminalMotivation}}</td>
-            <td>{{levelWanted}}</td>
-            <td>{{status}}</td>
+            <td>{{zipCode}}</td>
+            <td>{{militaryRank}}</td>
+            <td>{{commander}}</td>
+            <td>{{divisionAddress}}</td>
+            <td>{{officeDescription}}</td>
           </tr>
         {{/each}}
       </tbody>

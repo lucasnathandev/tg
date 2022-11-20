@@ -8,9 +8,9 @@ import adminRoutes from "./admin.js"
 const { suspect } = user
 const { isAdmin } = middlewares
 
-router.get("/", user.index)
 router.use("/admin", isAdmin, adminRoutes)
 
+router.get("/", user.index)
 router.get("/list/suspect", suspect.index)
 
 export default router

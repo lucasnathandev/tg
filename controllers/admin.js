@@ -40,7 +40,7 @@ export default {
         },
       })
 
-      return res.render("agent/List", { ...users, title: "Lista de Agentes" })
+      return res.render("agent/List", { users, title: "Lista de Agentes" })
     } catch (error) {
       res.render("error")
     }
@@ -78,9 +78,18 @@ export default {
           .split(" ")[0]
           .replace(/\//g, "")
 
+        const formattedCpf = (() => {
+          let v = cpf.replace(/\D/g, "")
+          v = v.substring(v.length - 5)
+          return v
+        })()
+
         const birth = new Date(birthDate)
 
-        const user = name.split(" ")[0].concat(stringDate).toLowerCase()
+        const user = name
+          .split(" ")[0]
+          .concat(formattedCpf, stringDate)
+          .toLowerCase()
 
         const userAlreadyExists = await prisma.agent.findFirst({
           where: {
@@ -151,8 +160,6 @@ export default {
         const { id } = req.params
         const {
           name,
-          rg,
-          cpf,
           birthDate,
           district,
           publicPlace,
@@ -182,8 +189,6 @@ export default {
           data: {
             name,
             password: encrypted,
-            rg,
-            cpf,
             cellNumber,
             birthDate: birth,
             publicPlace,
@@ -240,8 +245,6 @@ export default {
           },
         })
 
-        console.log(suspect)
-
         if (suspect) {
           return res.render("error", {
             error: {
@@ -282,7 +285,6 @@ export default {
         const { id } = req.params
         const {
           name,
-          cpf,
           criminalMotivation,
           picture,
           reason,
@@ -297,7 +299,6 @@ export default {
           },
           data: {
             name,
-            cpf,
             criminalMotivation,
             picture,
             reason,

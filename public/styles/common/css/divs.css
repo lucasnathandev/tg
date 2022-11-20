@@ -3,6 +3,7 @@ div {
 }
 
 div.grid {
+  position: relative;
   margin-top: 50px;
   width: 85%;
   height: 85%;
