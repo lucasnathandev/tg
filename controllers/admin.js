@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client"
 import bcrypt from "bcrypt"
+
 const prisma = new PrismaClient()
 
 export default {
@@ -152,8 +153,25 @@ export default {
   },
 
   updateUser: {
-    index(req, res) {
-      res.render("admin/updateUser", { title: "Atualizar Agente" })
+    async index(req, res) {
+      try {
+        const cpf = atob(req.params.cpf)
+        const user = await prisma.agent.findFirst({
+          where: {
+            cpf,
+          },
+        })
+        user.password = ""
+
+        return res.render("admin/createUser", {
+          title: "Atualizar Agente",
+          updateMode: true,
+          user,
+          isAdmin: user.type === "Admin",
+        })
+      } catch (error) {
+        return res.render("error")
+      }
     },
     async update(req, res) {
       try {
@@ -277,17 +295,33 @@ export default {
     },
   },
   updateSuspect: {
-    index(req, res) {
-      res.render("admin/updateSuspect", { title: "Atualizar Suspeito" })
+    async index(req, res) {
+      try {
+        const cpf = atob(req.params.cpf)
+        const suspect = await prisma.suspect.findFirst({
+          where: {
+            cpf,
+          },
+        })
+
+        return res.render("admin/createSuspect", {
+          title: "Atualizar Suspeito",
+          updateMode: true,
+          suspect,
+          arrested: suspect.status === "Preso",
+        })
+      } catch (error) {
+        return res.render("error")
+      }
     },
     async update(req, res) {
       try {
+        console.log(req.body)
         const { id } = req.params
         const {
           name,
           criminalMotivation,
           picture,
-          reason,
           levelWanted,
           description,
           status,
@@ -301,8 +335,7 @@ export default {
             name,
             criminalMotivation,
             picture,
-            reason,
-            levelWanted,
+            levelWanted: parseInt(levelWanted),
             description,
             status,
           },

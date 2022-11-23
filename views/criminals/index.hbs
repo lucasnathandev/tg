@@ -15,8 +15,8 @@
     <table class="table">
       <thead>
         <tr>
-          <th>CPF</th>
           <th>Nome</th>
+          <th>CPF</th>
           <th>Motivo</th>
           <th>Nível</th>
           <th>Status</th>
@@ -25,8 +25,8 @@
       <tbody>
         {{#each suspects}}
           <tr>
-            <td>{{cpf}}</td>
             <td>{{name}}</td>
+            <td data-cpf="{{cpf}}">{{cpf}}</td>
             <td>{{criminalMotivation}}</td>
             <td>{{levelWanted}}</td>
             <td>{{status}}</td>
@@ -38,15 +38,17 @@
   <div class="actions">
     <ul>
       <li class="link"><a
-          href="/user/admin/create/user"
+          href="/user/admin/create/suspect"
           target="_blank"
         >Cadastrar</a></li>
       <li class="link"><a
-          href="/user/admin/update/user"
+          href="/user/admin/update/suspect"
+          id="update-action"
           target="_blank"
         >Atualizar</a></li>
       <li class="link"><a
-          href="/user/admin/delete/user"
+          href="/user/admin/delete/suspect"
+          id="delete-action"
           target="_blank"
         >Inativar</a></li>
     </ul>

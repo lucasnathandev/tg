@@ -16,14 +16,14 @@
       <thead>
         <tr>
 
-          <th>RG</th>
-          <th>CPF</th>
-          <th>Nome</th>
-          <th>CEP</th>
-          <th>Patente</th>
-          <th>Comandante</th>
-          <th>End. Divisão</th>
-          <th>Descrição Cargo</th>
+          <th>RG<i class="down"></i></th>
+          <th>CPF<i class="down"></i></th>
+          <th>Nome<i class="down"></i></th>
+          <th>CEP<i class="down"></i></th>
+          <th>Patente<i class="down"></i></th>
+          <th>Comandante<i class="down"></i></th>
+          <th>End. Divisão<i class="down"></i></th>
+          <th>Descrição Cargo<i class="down"></i></th>
         </tr>
       </thead>
       <tbody>
@@ -31,7 +31,7 @@
           <tr>
 
             <td>{{rg}}</td>
-            <td>{{cpf}}</td>
+            <td data-cpf="{{cpf}}">{{cpf}}</td>
             <td>{{name}}</td>
             <td>{{zipCode}}</td>
             <td>{{militaryRank}}</td>
@@ -50,10 +50,12 @@
           target="_blank"
         >Cadastrar</a></li>
       <li class="link"><a
+          id="update-action"
           href="/user/admin/update/user"
           target="_blank"
         >Atualizar</a></li>
       <li class="link"><a
+          id="delete-action"
           href="/user/admin/delete/user"
           target="_blank"
         >Inativar</a></li>

@@ -68,7 +68,7 @@ model Agent {
   number            Int
   district          String
   complement        String?
-  zipCode           String
+  zipCode           String?
   city              String
   state             String
   commander         String

@@ -82,8 +82,7 @@ table.table > thead th {
   font-size: 1.2rem;
 }
 
-table.table > thead th::before {
-  content: "";
+table.table > thead th > i {
   position: absolute;
   right: 5px;
   width: 1.2rem;
@@ -92,10 +91,35 @@ table.table > thead th::before {
   cursor: pointer;
 }
 
+table.table > thead th > i.up::before {
+  content: "";
+  position: absolute;
+  left: 15%;
+  bottom: 15%;
+  height: 70%;
+  width: 70%;
+  background-image: url("/images/arrow-up.png");
+  background-size: cover;
+}
+table.table > thead th > i.down::before {
+  content: "";
+  position: absolute;
+  left: 15%;
+  bottom: 15%;
+  height: 70%;
+  width: 70%;
+  background-image: url("/images/arrow-down.png");
+  background-size: cover;
+}
+
 table.table > tbody > tr {
   background-color: #fff;
   text-align: center;
   border-bottom: 1px solid gray;
+}
+
+table.table > tbody > tr.active {
+  background-color: gray;
 }
 
 table.table > tbody > tr:last-child {
@@ -103,6 +127,7 @@ table.table > tbody > tr:last-child {
 }
 
 table.table > tbody > tr td {
+  padding: 8px 0;
   font-size: 1.2rem;
 }
 
