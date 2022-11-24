@@ -18,7 +18,7 @@ router.post("/create/suspect/complete", admin.createSuspect.create)
 // PUT routes
 router.post("/update/user/:id/complete", admin.updateUser.update)
 router.post("/update/suspect/:id/complete", admin.updateSuspect.update)
-router.post("/delete/user/:id", admin.deleteUser.delete)
-router.post("/delete/suspect/:id", admin.deleteSuspect.delete)
+router.put("/delete/user/:cpf", admin.deleteUser.delete)
+router.put("/delete/suspect/:cpf", admin.deleteSuspect.delete)
 
 export default router

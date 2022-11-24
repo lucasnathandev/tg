@@ -3,6 +3,38 @@ import bcrypt from "bcrypt"
 
 const prisma = new PrismaClient()
 
+function formatCpf(cpf) {
+  let v = cpf.replace(/\D/g, "")
+
+  v = v.replace(/(\d{3})(\d)/, "$1.$2")
+
+  v = v.replace(/(\d{3})(\d)/, "$1.$2")
+
+  v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
+
+  cpf = v
+}
+
+function formatRg(rg) {
+  let v = rg.replace(/\W/g, "")
+  v = v.replace(/(\d{2})(\d{3})(\d{3})(\w{1})$/, "$1.$2.$3-$4")
+  rg = v
+}
+
+function capitalize(text) {
+  let prepos = ["da", "do", "das", "dos", "a", "e", "de"]
+  return text
+    .split(" ") // quebra o texto em palavras
+    .map((word) => {
+      word = word.toLowerCase()
+      if (prepos.includes(word)) {
+        return word
+      }
+      return word.charAt(0).toUpperCase() + word.slice(1)
+    })
+    .join(" ") // junta as palavras novamente
+}
+
 export default {
   async userList(req, res) {
     try {
@@ -53,7 +85,7 @@ export default {
     },
     async create(req, res) {
       try {
-        const {
+        let {
           name,
           rg,
           cpf,
@@ -73,6 +105,10 @@ export default {
           password,
           type,
         } = req.body
+
+        formatCpf(cpf)
+        formatRg(rg)
+        name = capitalize(name)
 
         const stringDate = new Date()
           .toLocaleString()
@@ -162,6 +198,9 @@ export default {
           },
         })
         user.password = ""
+        user.birthDate = `${user.birthDate.getFullYear()}-${
+          user.birthDate.getMonth() + 1
+        }-${user.birthDate.getDate()}`
 
         return res.render("admin/createUser", {
           title: "Atualizar Agente",
@@ -176,8 +215,8 @@ export default {
     async update(req, res) {
       try {
         const { id } = req.params
+        let { name } = req.body
         const {
-          name,
           birthDate,
           district,
           publicPlace,
@@ -194,6 +233,8 @@ export default {
           password,
           type,
         } = req.body
+
+        name = capitalize(name)
 
         const salt = await bcrypt.genSalt(10)
         const encrypted = await bcrypt.hash(password, salt)
@@ -245,7 +286,7 @@ export default {
     },
     async create(req, res) {
       try {
-        const {
+        let {
           name,
           cpf,
           criminalMotivation,
@@ -255,7 +296,8 @@ export default {
           status,
         } = req.body
 
-        console.log(req.body)
+        formatCpf(cpf)
+        name = capitalize(name)
 
         const suspect = await prisma.suspect.findFirst({
           where: {
@@ -318,14 +360,16 @@ export default {
       try {
         console.log(req.body)
         const { id } = req.params
+        let { name } = req.body
         const {
-          name,
           criminalMotivation,
           picture,
           levelWanted,
           description,
           status,
         } = req.body
+
+        name = capitalize(name)
 
         const updated = await prisma.suspect.update({
           where: {
@@ -348,7 +392,7 @@ export default {
           })
         }
       } catch (error) {
-        return res.render("error")
+        return res.render("error", error)
       }
     },
   },
@@ -358,18 +402,21 @@ export default {
     },
     async delete(req, res) {
       try {
-        const { id } = req.body
+        const { cpf } = req.params
+
         const deleted = await prisma.agent.update({
           where: {
-            id,
+            cpf: atob(cpf),
           },
           data: {
             isActivated: false,
             deactivatedDate: Date.now(),
           },
         })
+        console.log(deleted)
+        return res.send({ message: "Agente inativado" })
       } catch (error) {
-        res.render("error")
+        res.send(error)
       }
     },
   },
@@ -379,18 +426,20 @@ export default {
     },
     async delete(req, res) {
       try {
-        const { id } = req.body
+        const { cpf } = req.params
         const deleted = await prisma.suspect.update({
           where: {
-            id,
+            cpf: atob(cpf),
           },
           data: {
             isActivated: false,
             deactivatedDate: Date.now(),
           },
         })
+        console.log(deleted)
+        return res.send({ message: "Suspeito inativado" })
       } catch (error) {
-        res.render("error")
+        return res.render("error", error)
       }
     },
   },
